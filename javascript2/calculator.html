@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+
+<h1>Taschenrechner</h1>
+
+<label>
+    Erste Zahl:
+    <input type="number" id="number1">
+</label>
+
+<br><br>
+
+<label>
+    Operator:
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+</label>
+
+<br><br>
+
+<label>
+    Zweite Zahl:
+    <input type="number" id="number2">
+</label>
+
+<br><br>
+
+<button id="calculate">Berechnen</button>
+
+<p>Ergebnis: <span id="result"></span></p>
+
+<script>
+    const number1 = document.querySelector("#number1");
+    const number2 = document.querySelector("#number2");
+    const operator = document.querySelector("#operator");
+    const button = document.querySelector("#calculate");
+    const result = document.querySelector("#result");
+
+    button.addEventListener("click", () => {
+
+        const a = number1.valueAsNumber;
+        const b = number2.valueAsNumber;
+        const op = operator.value;
+
+        let output;
+
+        if (op === "+") {
+            output = a + b;
+        }
+        else if (op === "-") {
+            output = a - b;
+        }
+        else if (op === "*") {
+            output = a * b;
+        }
+        else if (op === "/") {
+            output = a / b;
+        }
+
+        result.textContent = output;
+    });
+</script>
+
+</body>
+</html>

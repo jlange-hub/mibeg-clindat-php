@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 9</title>
+</head>
+<body>
+    <!-- 1) HTML (User Interface = UI) schreiben -->
+    <h1>Fahrenheit zu Celsius Konvertierer</h1>
+    <label>
+        Grad Fahrenheit
+        <input id="fahrenheit">
+    </label>
+    <button>Konvertieren</button>
+    <p>sind in Grad Celsius: <span id="result"></span></p>
+
+    <script>
+        // 2) HTML anvisieren
+        const fahrenheitInput = document.querySelector("#fahrenheit");
+        const convertButton = document.querySelector("button");
+        const resultOutput = document.querySelector("#result");
+
+        // 3) JavaScript-Funktionen zu schreiben,
+        //      die im Kern unsere Aufgabe erledigen
+        function fahrenheit2celsius(fahrenheit) {
+            return (fahrenheit -32) * 5/9;
+        }
+        //Convert: 1. Werte auslesen aus Input, 2. Berechnung, 3. Ergebnisdarstellung
+        function convert() {
+            const fahrenheitValue = fahrenheitInput.value;
+            const celsiusValue = fahrenheit2celsius(fahrenheitValue);
+            resultOutput.textContent = celsiusValue;
+        }
+
+        // 4) Event Listener um UI und Funktionen zu kombinieren
+        convertButton.addEventListener("click", convert);
+    </script>
+</body>
+</html>
