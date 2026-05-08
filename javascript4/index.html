@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Zahlratespiel</title>
+</head>
+<body>
+
+    <h1>Zahlratespiel</h1>
+
+    <p>Errate eine Zahl zwischen 1 und 99. Du hast 10 Versuche.</p>
+
+    <input id="guess" type="number" min="1" max="99">
+    <button id="check">Eingabe</button>
+
+    <!-- message= Zahl zu hoch, niedrig... gewonnen -->
+    <p id="message"></p> 
+    <p id="tries"></p>
+
+    <script>
+       //Zufallszahl math.random 0 bis <1 , math.floor schneidet Nachkommastellen ab
+        const secretNumber = Math.floor(Math.random() * 99) + 1;
+
+        const guessInput = document.querySelector("#guess");
+        const checkButton = document.querySelector("#check");
+        const message = document.querySelector("#message");
+        const triesText = document.querySelector("#tries");
+
+        //let=Zahl der Versuche darf sich ändern.  Start 0 bis max=10
+        let tries = 0;
+        const maxTries = 10;
+
+        checkButton.addEventListener("click", () => {
+            // Inhalt aus Eingabefeld zuerst Text=> Es muss eine echte Zahl daraus gemacht werden
+            const guess = Number(guessInput.value);
+            // Anzahl der Versuche wird hochgezählt
+            tries = tries + 1;
+
+            // Entspricht Eingabe der Geheimzahl? Unterscheidung der Fälle.
+            if (guess === secretNumber) {
+                message.textContent = "Richtig! Du hast gewonnen.";
+                checkButton.disabled = true;
+            } else if (tries === maxTries) {
+                message.textContent = "Verloren. Die Zahl war " + secretNumber + ".";
+                checkButton.disabled = true;
+            } else if (guess < secretNumber) {
+                message.textContent = "Zu niedrig.";
+            } else {
+                message.textContent = "Zu hoch.";
+            }
+
+            triesText.textContent = "Versuche: " + tries + " / " + maxTries;
+            guessInput.value = "";
+        });
+    </script>
+
+</body>
+</html>
+  

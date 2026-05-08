@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Konverter</title>
+</head>
+<body>
+    <!-- 1) HTML (User Interface = UI) schreiben -->
+    <h1>Currency Konverter</h1>
+    <label>
+        Euro €:
+        <input id="euro" type="number">
+    </label>
+
+    <label>
+        Zloty zł:
+        <input id="zloty" type="number">
+    </label>
+
+    <label>
+    <!--Aktueller Tageskurs eu-zl Stand 08.05.26-->
+        Wechselkurs:
+        <input id="wkurs" type="number" value="4.229">
+    </label>
+ 
+    <script>
+       const eu=document.querySelector("#euro");
+       const zl=document.querySelector("#zloty");
+       const wk=document.querySelector("#wkurs");
+
+       //Werte und Berechnung Euro zu Zloty
+        eu.addEventListener("input", () => {
+            const euro=Number(eu.value);
+            const Wechselkurs=Number(wk.value);
+            const zloty=euro * Wechselkurs;
+        //Damit Ergebnis im Feld erscheint; 2=2 Nachkommastellen
+            zl.value=zloty.toFixed(2);
+
+        });
+
+        //Werte und Berechnung Zloty zu Euro
+        zl.addEventListener("input", () => {
+            const zloty=Number(zl.value);
+            const Wechselkurs=Number(wk.value);
+            const euro=zloty / Wechselkurs;
+        //Damit Ergebnis im Feld erscheint; 2=2 Nachkommastellen
+            eu.value=euro.toFixed(2);
+
+        });
+
+    </script>
+</body>
+</html>
+
+
+<!--Eine API, die uns den Kurs liefert, z.B. https://www.freepublicapis.com/exchange-rate-api
+Eine kleine PHP-Datei, die diese API einliest mit file_get_contents
+JavaScript-Code, der dieses PHP mittels fetch einlies-->
