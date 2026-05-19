@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitale Einkaufsliste</title>
+</head>
+<body>
+
+    <h1>Digitale Einkaufsliste</h1>
+
+    <p>Geben Sie ein Produkt in das Textfeld ein:</p>
+
+    <input type="text" id="productInput">
+    <button id="submit">Hinzufügen</button>
+
+    <ul></ul>
+
+    <script>
+        // Model; Leere Produkteliste 
+        const products = [];
+
+        // View-Elemente holen
+        const input = document.querySelector("#productInput");
+        const button = document.querySelector("#submit");
+        const ul = document.querySelector("ul");
+
+        // Produkt hinzufügen
+        button.addEventListener("click", () => {
+            const product = input.value;
+
+            if (product === "") {
+                return;
+            }
+
+            products.push(product);
+
+            const html = `<li>${product}</li>`;
+            ul.insertAdjacentHTML("beforeend", html);
+
+            input.value = "";
+        });
+
+        // Produkt anklicken, durchstreichen und löschen
+        ul.addEventListener("click", (event) => {
+            const clickedElement = event.target;
+
+            if (clickedElement.tagName === "LI") {
+                clickedElement.style.textDecoration = "line-through";
+
+                setTimeout(() => {
+                    clickedElement.remove();
+                }, 800);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
